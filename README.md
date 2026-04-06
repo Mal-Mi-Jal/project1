@@ -21,3 +21,7 @@
 좋아요 API
 1. 좋아요
 2. 좋아요 취소
+
+DB 모델링
+<img width="732" height="722" alt="Untitled" src="https://github.com/user-attachments/assets/2d30cc06-aefe-433f-9d1a-d6108a675f75" />
+
