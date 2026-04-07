@@ -70,6 +70,7 @@ JSON
 
 
 2. 로그인 API (POST /api/users/login)
+   
 설명: 이메일과 비밀번호를 확인하고 인증 토큰(JWT)을 발급합니다.
 
 Request Body: 회원가입과 동일
@@ -103,6 +104,7 @@ email: 중복 확인을 하려는 이메일 주소
 
 예시: /api/users/check-email?email=test@example.com
 
+
 1) 성공 응답 (사용 가능한 이메일일 때)
 
 Status Code: 200 OK
@@ -119,6 +121,7 @@ JSON
   
 }
 
+
 2) 실패 응답 (이미 가입된 이메일일 때)
    
 Status Code: 409 Conflict (이미 서버에 리소스가 존재하여 충돌이 발생했다는 의미)
@@ -134,6 +137,7 @@ JSON
   "message": "이미 사용 중인 이메일입니다."
   
 }
+
 
 3. 실패 응답 (입력 형식이 잘못되었을 때)
    
