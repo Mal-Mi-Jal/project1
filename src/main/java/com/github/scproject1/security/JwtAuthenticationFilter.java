@@ -21,7 +21,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        // 1. 헤더에서 토큰 꺼내기 (보통 'Authorization' 헤더에 담아 보냄)
         String bearerToken = request.getHeader("Authorization");
         String token = resolveToken(bearerToken);
 

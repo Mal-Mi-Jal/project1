@@ -23,16 +23,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // 1. CSRF 보안 비활성화 (테스트 시 필수)
+                .csrf(AbstractHttpConfigurer::disable) // 1. CSRF 보안 비활성화 (테스트용)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/signup", "/api/users/check-email", "/api/users/login").permitAll() // 2. 회원가입, 중복체크는 누구나 허용
-                        .requestMatchers("/h2-console/**").permitAll() // 3. H2 콘솔도 열어줘야 확인 가능!
-                        .anyRequest().authenticated() // 4. 나머지는 로그인해야 가능
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().authenticated() // 3. 나머지는 로그인해야 가능
                 )
                 .headers(headers -> headers.frameOptions(options -> options.disable()))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtToken), UsernamePasswordAuthenticationFilter.class);
 
-        // 5. H2 콘솔 화면 깨짐 방지
 
         return http.build();
     }
