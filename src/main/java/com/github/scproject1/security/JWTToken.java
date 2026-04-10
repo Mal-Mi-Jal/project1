@@ -1,9 +1,6 @@
 package com.github.scproject1.security;
 
-import com.github.scproject1.entity.User;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.io.Decoders;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

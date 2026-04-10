@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class Post extends BaseTime{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +33,6 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_email")
     private User user;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
 
     public void update(String title, String content) {
         this.title = title;
