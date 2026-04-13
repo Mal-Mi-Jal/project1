@@ -24,8 +24,8 @@ public class CommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void saveComment(CommentRequestDto dto, String email){
-        Post post = postRepository.findById(dto.getPostId())
+    public void saveComment(Long postId, CommentRequestDto dto, String email){
+        Post post = postRepository.findById(postId)
                 .orElseThrow(()->new IllegalArgumentException("게시글이 없습니다."));
 
         User user = userRepository.findByEmail(email)

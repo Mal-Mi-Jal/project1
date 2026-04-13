@@ -19,7 +19,7 @@ public class CommentResponseDto {
         this.id = comment.getId();
         this.content = comment.getContent();
         this.writerEmail = comment.getUser().getEmail();
-        this.createdAt = comment.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.createdAt = comment.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 
         if (comment.getUpdatedAt() != null) {

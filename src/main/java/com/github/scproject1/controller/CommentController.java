@@ -18,11 +18,12 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping("/comments")
-    public ResponseEntity<Void> createComments(@RequestBody CommentRequestDto dto){
+    @PostMapping("/posts/{id}/comments")
+    public ResponseEntity<Void> createComments(@PathVariable Long id,
+                                               @RequestBody CommentRequestDto dto){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        commentService.saveComment(dto, email);
+        commentService.saveComment(id, dto, email);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
