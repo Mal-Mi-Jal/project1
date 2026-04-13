@@ -11,6 +11,7 @@ public class PostResponseDto {
     private Long id;
     private String title;
     private String writerEmail;
+    private String content;
     private String createdAt;
     private String updatedAt;
 
@@ -18,6 +19,7 @@ public class PostResponseDto {
         this.id = post.getId();
         this.title = post.getTitle();
         this.writerEmail = post.getUser().getEmail();
+        this.content = post.getContent();
         this.createdAt = post.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         // updatedAt이 null이 아닐 때만 포맷팅 (처음엔 null일 수 있음)

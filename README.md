@@ -201,9 +201,9 @@ JSON
 
 [
 
-  { "id": 1, "title": "첫 글", "writerEmail": "a@a.com", "createdAt": "2026-04-07" },
+  { "id": 1, "title": "첫 글", "writerEmail": "a@a.com", "content":"테스트", "createdAt": "2026-04-07" },
   
-  { "id": 2, "title": "두 번째 글", "writerEmail": "b@b.com", "createdAt": "2026-04-07" }
+  { "id": 2, "title": "두 번째 글", "writerEmail": "b@b.com", "content":"테스트", "createdAt": "2026-04-07" }
   
 ]
 
@@ -266,8 +266,7 @@ JSON
   "postId": 1, 
   
   "content": "안녕안녕!",
-  
-  "writerEmail": "reviewer@test.com"
+
 
 }
 

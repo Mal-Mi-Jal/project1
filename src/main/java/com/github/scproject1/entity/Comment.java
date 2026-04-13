@@ -28,4 +28,9 @@ public class Comment extends BaseTime{
     @JoinColumn(name = "user_email", nullable = false)
     private User user;
 
+
+    public void update(String content){
+        this.content = content;
+    }
+
 }
