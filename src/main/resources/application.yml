@@ -23,3 +23,4 @@ spring:
 jwt:
   secret: "vmos98d98asv98asdv98asdv98asdv98ashawefaiwjioejgoiawjgoajgov98d89v"
   expiration: 3600000
+

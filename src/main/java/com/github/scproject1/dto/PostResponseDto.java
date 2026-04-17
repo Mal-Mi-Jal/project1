@@ -3,10 +3,13 @@ package com.github.scproject1.dto;
 import com.github.scproject1.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.format.DateTimeFormatter;
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostResponseDto {
     private Long id;
     private String title;
