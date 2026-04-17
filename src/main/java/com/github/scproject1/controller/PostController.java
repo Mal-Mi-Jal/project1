@@ -54,7 +54,7 @@ public class PostController {
 
     // MOCK TEST
     @GetMapping("/test")
-    public ResponseEntity<List<PostResponseDto>> getMockPostsT(){
+    public ResponseEntity<List<PostResponseDto>> getMockPost(){
         List<PostResponseDto> mockData = List.of(
                 new PostResponseDto(1L, "첫 번째 글", "user1@test.com", "내용입니다", "2025-01-01 00:00:00", null),
                 new PostResponseDto(2L, "두 번째 글", "user2@test.com", "내용입니다", "2025-01-02 00:00:00", null)
