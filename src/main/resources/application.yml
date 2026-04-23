@@ -6,7 +6,7 @@ spring:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
     username: sa
-    password:
+    password: ${DB_PASSWORD:default_password}
 
   jpa:
     hibernate:
@@ -21,6 +21,6 @@ spring:
       enabled: true
 
 jwt:
-  secret: "vmos98d98asv98asdv98asdv98asdv98ashawefaiwjioejgoiawjgoajgov98d89v"
+  secret: ${JWT_SECRET_KEY:default_secret_key_very_long_string_123456}
   expiration: 3600000
 
