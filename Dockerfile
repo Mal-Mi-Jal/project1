@@ -4,6 +4,10 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN ./gradlew build -x test
 
+RUN chmod +x gradlew
+
+RUN ./gradlew build -x test
+
 # 2. 실행 단계
 FROM amazoncorretto:21-al2023-headless
 EXPOSE 8080
