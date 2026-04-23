@@ -41,12 +41,14 @@ dependencies {
         testCompileOnly 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.projectlombok:lombok'
 
-        // 5. Test (이 두 줄이면 MockMvc, JUnit, Spring Security Test 전부 포함됩니다!)
+        // 5. Test
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework.security:spring-security-test'
 
         // JUnit 실행 도구
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
     }
 
 }

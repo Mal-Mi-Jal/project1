@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/signup", "/api/users/check-email", "/api/users/login" ,
                                         "/api/posts/{id}/comments", "/api/posts/test").permitAll() // 2. 회원가입, 중복체크는 누구나 허용
-                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated() // 3. 나머지는 로그인해야 가능
                 )
                 .headers(headers -> headers.frameOptions(options -> options.disable()))
