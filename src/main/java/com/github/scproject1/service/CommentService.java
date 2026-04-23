@@ -64,7 +64,7 @@ public class CommentService {
                 .orElseThrow(()->new IllegalArgumentException("해당 댓글이 없습니다."));
 
         if(!comment.getUser().getEmail().equals(email)){
-            throw new RuntimeException("수정 권한이 없습니다.");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "수정 권한이 없습니다.");
         }
 
         comment.update(content);

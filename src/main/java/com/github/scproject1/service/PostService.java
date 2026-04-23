@@ -75,7 +75,7 @@ public class PostService {
                 .orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다."));
 
         if(!post.getUser().getEmail().equals(email)){
-            throw new RuntimeException("삭제 권한이 없습니다.");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "삭제 권한이 없습니다.");
         }
 
         postRepository.delete(post);
