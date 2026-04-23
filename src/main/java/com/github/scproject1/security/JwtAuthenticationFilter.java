@@ -21,6 +21,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        String path = request.getRequestURI();
+
+        // swagger 관련 처리
+        if (path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs") || path.startsWith("/api/users")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         // 요청 헤더에서 토큰 가져오기
         String bearerToken = request.getHeader("Authorization");
         String token = resolveToken(bearerToken);
