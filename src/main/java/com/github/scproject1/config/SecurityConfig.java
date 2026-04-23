@@ -31,8 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated() // 3. 나머지는 로그인해야 가능
                 )
-                .headers(headers -> headers.frameOptions(options -> options.disable()))
-                .addFilterBefore(new JwtAuthenticationFilter(jwtToken), UsernamePasswordAuthenticationFilter.class);
+                .headers(headers -> headers.frameOptions(options -> options.disable()));
+                //.addFilterBefore(new JwtAuthenticationFilter(jwtToken), UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();
