@@ -32,7 +32,7 @@ public class JWTToken {
         this.tokenValidityInMilliseconds = tokenValidityInMilliseconds;
     }
 
-    // 토큰 생성 메서드
+    // 토큰 생성
     public String createToken(String email) {
         long now = (new Date()).getTime();
         Date validity = new Date(now + tokenValidityInMilliseconds);
@@ -45,6 +45,7 @@ public class JWTToken {
                 .compact();
     }
 
+    // 토큰 유효성 검사
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -55,7 +56,7 @@ public class JWTToken {
         }
     }
 
-    // 토큰에서 인증 정보(Authentication) 가져오기
+    // 토큰에서 인증 정보 가져오기
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parserBuilder().setSigningKey(key).build()
                 .parseClaimsJws(token).getBody();

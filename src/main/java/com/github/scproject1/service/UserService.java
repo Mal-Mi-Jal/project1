@@ -19,11 +19,13 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final JWTToken jwtToken;
 
+    // 이메일 체크
     @Transactional(readOnly = true)
     public boolean checkEmail(String email) {
         return userRepository.existsByEmail(email);
     }
 
+    // 회원가입 로직
     @Transactional
     public void signUp(UserSignUpDto userSignUpDto) {
         String encodedPassword = passwordEncoder.encode(userSignUpDto.getPassword());
@@ -36,6 +38,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    // 로그인 로직
     @Transactional(readOnly = true)
     public String login(UserLoginDto userLoginDto) {
         User user = userRepository.findById(userLoginDto.getEmail())
@@ -48,6 +51,8 @@ public class UserService {
         return jwtToken.createToken(user.getEmail());
     }
 
+    
+    // 로그아웃 로직
     public void logout(String bearerToken){
         if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             String token = bearerToken.substring(7);

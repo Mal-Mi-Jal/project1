@@ -21,10 +21,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        // 요청 헤더에서 토큰 가져오기
         String bearerToken = request.getHeader("Authorization");
         String token = resolveToken(bearerToken);
 
-        // 2. 토큰이 있고, 유효하다면 유저 정보를 시큐리티 홀더에 저장
+        // 토큰 유효성 검사
         if (token != null && jwtToken.validateToken(token)) {
             if(!jwtToken.isLoggedOut(token)){
                 Authentication auth = jwtToken.getAuthentication(token);
@@ -35,6 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    // Bearer 빼고 진짜 토큰만 가져오기
     private String resolveToken(String bearerToken) {
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);

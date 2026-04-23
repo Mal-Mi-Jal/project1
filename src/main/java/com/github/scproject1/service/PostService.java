@@ -7,8 +7,10 @@ import com.github.scproject1.entity.User;
 import com.github.scproject1.repository.PostRepository;
 import com.github.scproject1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +22,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
+    // 게시물 생성
     @Transactional
     public Long createPost(PostRequestDto dto, String email){
         User user = userRepository.findById(email)
@@ -34,6 +37,7 @@ public class PostService {
         return postRepository.save(post).getId();
     }
 
+    // 게시물 전체 조회
     @Transactional(readOnly = true)
     public List<PostResponseDto> findAllPosts(){
         return postRepository.findAllByOrderByIdDesc().stream()
@@ -41,6 +45,7 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    // 작성자 이메일로 게시물 조회
     @Transactional(readOnly = true)
     public List<PostResponseDto> findAllPostsByUserEmail(String email){
         return postRepository.findAllByUserEmailOrderByCreatedAtDesc(email).stream()
@@ -48,13 +53,14 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    // 게시물 수정
     @Transactional
     public Long updatePost(Long id, PostRequestDto dto, String email) {
         Post post = postRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다."));
 
         if(!post.getUser().getEmail().equals(email)){
-            throw new RuntimeException("수정 권한이 없습니다.");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "수정 권한이 없습니다.");
         }
 
         post.update(dto.getTitle(), dto.getContent());
@@ -62,6 +68,7 @@ public class PostService {
         return post.getId();
     }
 
+    // 게시물 삭제
     @Transactional
     public void deletePost(Long id, String email) {
         Post post = postRepository.findById(id)

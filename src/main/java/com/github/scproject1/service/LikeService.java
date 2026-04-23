@@ -20,6 +20,7 @@ public class LikeService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
+    // 좋아요 및 좋아요 취소
     @Transactional
     public boolean likePost(Long postId, String userEmail){
         Post post = postRepository.findById(postId)
