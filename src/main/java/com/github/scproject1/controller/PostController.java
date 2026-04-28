@@ -43,7 +43,7 @@ public class PostController {
     @PutMapping("/{id}")
     public ResponseEntity<Long> updatePost(@PathVariable Long id, @RequestBody PostRequestDto dto) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ResponseEntity.ok(postService.updatePost(id, dto, email));
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.updatePost(id, dto, email));
     }
 
     @DeleteMapping("/{id}")
