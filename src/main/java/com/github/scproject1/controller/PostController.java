@@ -5,6 +5,7 @@ import com.github.scproject1.dto.PostResponseDto;
 import com.github.scproject1.entity.Post;
 import com.github.scproject1.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class PostController {
 
         Long postId = postService.createPost(dto, email);
 
-        return ResponseEntity.ok(postId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(postId);
     }
 
     @GetMapping
