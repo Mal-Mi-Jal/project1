@@ -6,10 +6,12 @@ import com.github.scproject1.entity.User;
 import com.github.scproject1.repository.UserRepository;
 import com.github.scproject1.security.JWTToken;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +30,11 @@ public class UserService {
     // 회원가입 로직
     @Transactional
     public void signUp(UserSignUpDto userSignUpDto) {
+
+        if (userRepository.existsByEmail(userSignUpDto.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "이미 사용중인 이메일입니다.");
+        }
+
         String encodedPassword = passwordEncoder.encode(userSignUpDto.getPassword());
 
         User user = User.builder()
